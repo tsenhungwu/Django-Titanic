@@ -8,7 +8,17 @@ from .functions import classify_passenger, load_model
 
 class get_classification(APIView):
   def post(self, request):
-    model = load_model('./api/titanic_model.pk')
+    model = load_model('./api/titanic_model.sav')
     data = request.data
     prediction = classify_passenger(model = model, data = data)
-    return(Response(prediction))
+    return Response(prediction)
+
+# from django.views.decorators.csrf import csrf_exempt
+# from django.http import HttpResponse
+# @csrf_exempt
+# def a(request):
+#     if request.method == "POST":
+#         print('\n'*10)
+#         print('p')
+#         print('\n'*10)
+#     return HttpResponse('Oh')
